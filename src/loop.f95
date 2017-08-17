@@ -267,7 +267,17 @@ SUBROUTINE loop
            z0  = z1
            ia  = ib
            iam = ia-1
-           if(iam == 0) iam = IMT
+! 20170817           
+!           if(iam == 0) iam = IMT
+! === cyclic world ocean/atmosphere ?===
+           if (nperio /= 0) then
+              ! === Cyclic world ocean/atmosphere === 
+              if(iam == 0) iam = IMT
+           else
+              ! === prevent beyond the boundary === 
+              if(iam == 0) iam = 1
+           end if           
+! 20170817
            ja  = jb
            ka  = kb
            
